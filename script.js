@@ -5,7 +5,7 @@ const Board = () => {
   const [gameState, setGameState] = React.useState([]);
   let status = `Winner is ${checkForWinner(gameState)}`;
   
-  // Part 1 step 1 code goes here
+
   // Use conditional logic to set a variable to either 'Player O' or  'Player X'
   let playerTurn = `Next Player: ${player === '0' ? 'Player O' : 'Player X'}`;
  
@@ -39,10 +39,6 @@ const Board = () => {
         {renderSquare(8)}
       </div>
       <div id="info">
-        {/* 
-          Part 1 step 2 code goes here 
-          Display the player's turn <h1>
-        */}
         <h1 id='turn'>{playerTurn}</h1>
         <h1>{status}</h1>
       </div>
@@ -54,22 +50,23 @@ const Square = ({ takeTurn, id }) => {
   const mark = ['O', 'X', '+'];
   // id is the square's number
   // filled tells you if square has been filled
-  // tik tells you symbol in square (same as player)
+  // tic tells you symbol in square (same as player)
   // You call takeTurn to tell Parent that the square has been filled
+
   const [filled, setFilled] = React.useState(false);
-  const [tik, setTik] = React.useState(2);
+  const [tic, setTic] = React.useState(2);
 
   return (
     <button
-      // Part 2: update the return statement below to add css classes
-      className={tik === 1 ? 'red' : 'white'}
+      // add css classes
+      className={tic === 1 ? 'red' : 'white'}
       onClick={() => {
-        setTik(takeTurn(id));
+        setTic(takeTurn(id));
         setFilled(true);
-        console.log(`Square: ${id} filled by player : ${tik}`);
+        console.log(`Square: ${id} filled by player : ${tic}`);
       }}
     >
-      <h1>{mark[tik]}</h1>
+      <h1>{mark[tic]}</h1>
     </button>
   );
 };
@@ -82,10 +79,10 @@ const Game = () => {
   );
 };
 
-// Checking for Winner takes a bit of work
+// Checking for Winner 
 // Use JavaScript Sets to check players choices
 // against winning combinations
-// Online there is more compact version but Dr. Williams prefers this one
+
 
 const win = [
   // rows
